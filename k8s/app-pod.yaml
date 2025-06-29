@@ -9,7 +9,8 @@ metadata:
 spec:
   containers:
   - name: flask-app
-    image: ${ECR_REPOSITORY_URI}:v1
+    image: my_app:latest
+    imagePullPolicy: Never
     ports:
     - containerPort: 8080
     env:

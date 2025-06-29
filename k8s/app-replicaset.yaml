@@ -4,7 +4,7 @@ metadata:
   name: app-replicaset
   namespace: clo835-app
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: flask-app
@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: flask-app
-        image: ${ECR_REPOSITORY_URI}:v1
+        image: my_app:latest
+        imagePullPolicy: Never
         ports:
         - containerPort: 8080
         env:

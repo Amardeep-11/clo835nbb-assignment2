@@ -4,7 +4,7 @@ metadata:
   name: mysql-replicaset
   namespace: clo835-app
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: mysql

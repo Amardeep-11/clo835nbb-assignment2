@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  namespace: clo835-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flask-app
+  template:
+    metadata:
+      labels:
+        app: flask-app
+        version: v1
+    spec:
+      containers:
+      - name: flask-app
+        image: ${ECR_REPOSITORY_URI}:v1
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DBHOST
+          value: "mysql-service"
+        - name: DBPORT
+          value: "3306"
+        - name: DBUSER
+          value: "root"
+        - name: DBPWD
+          value: "pw"
+        - name: DATABASE
+          value: "employees"
+        - name: APP_COLOR
+          value: "blue"
+        - name: APP_VERSION
+          value: "v1.0.0"
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 60
+          periodSeconds: 15 

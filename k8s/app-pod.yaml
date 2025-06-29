@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-pod
+  namespace: clo835-app
+  labels:
+    app: flask-app
+    version: v1
+spec:
+  containers:
+  - name: flask-app
+    image: ${ECR_REPOSITORY_URI}:v1
+    ports:
+    - containerPort: 8080
+    env:
+    - name: DBHOST
+      value: "mysql-pod"
+    - name: DBPORT
+      value: "3306"
+    - name: DBUSER
+      value: "root"
+    - name: DBPWD
+      value: "pw"
+    - name: DATABASE
+      value: "employees"
+    - name: APP_COLOR
+      value: "blue" 

@@ -11,4 +11,3 @@ location VARCHAR(20));
 INSERT INTO employee VALUES ('1','Amanda','Williams','Smile','local');
 INSERT INTO employee VALUES ('1','Alan','Williams','Empathy','alien');
 SELECT * FROM employee;
-
